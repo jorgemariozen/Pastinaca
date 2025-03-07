@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Eventos de Apnea 2025</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a4157 0%, #0f5e7a 100%);
+            margin: 0;
+            padding: 20px;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #88d8ff;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .calendar {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .month {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 250px;
+        }
+        
+        .month:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .month h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+        
+        .empty-month {
+            opacity: 0.5;
+        }
+        
+        .event {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(79, 190, 255, 0.2);
+            border-left: 4px solid #4fbefd;
+            border-radius: 4px;
+        }
+        
+        .event-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        
+        .event-date {
+            font-size: 0.8rem;
+            color: #88d8ff;
+        }
+        
+        .event-type {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+        
+        .juegos {
+            background-color: rgba(255, 159, 67, 0.3);
+            border-left-color: #ff9f43;
+        }
+        
+        .simulacro {
+            background-color: rgba(46, 213, 115, 0.3);
+            border-left-color: #2ed573;
+        }
+        
+        .competencia {
+            background-color: rgba(75, 123, 236, 0.3);
+            border-left-color: #4b7bec;
+        }
+        
+        .fiesta {
+            background-color: rgba(255, 71, 87, 0.3);
+            border-left-color: #ff4757;
+        }
+        
+        .pastilabs {
+            background-color: rgba(165, 94, 234, 0.3);
+            border-left-color: #a55eea;
+        }
+        
+        .curso {
+            background-color: rgba(45, 203, 204, 0.3);
+            border-left-color: #2dcbcc;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo svg {
+            width: 120px;
+            height: 120px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0.2;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#4fbefd;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#0a4157;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path fill="url(#gradient)" d="M100,15 C152.5,15 195,57.5 195,110 C195,162.5 152.5,205 100,205 C47.5,205 5,162.5 5,110 C5,57.5 47.5,15 100,15 Z" />
+                <path fill="white" opacity="0.3" d="M40,110 C40,83 67,60 100,60 C133,60 160,83 160,110" stroke="white" stroke-width="3" stroke-linecap="round" />
+                <path fill="white" opacity="0.5" d="M60,110 C60,93 78,80 100,80 C122,80 140,93 140,110" stroke="white" stroke-width="3" stroke-linecap="round" />
+                <path fill="white" opacity="0.8" d="M80,110 C80,103 89,97 100,97 C111,97 120,103 120,110" stroke="white" stroke-width="3" stroke-linecap="round" />
+                <circle cx="100" cy="110" r="8" fill="white" />
+            </svg>
+        </div>
+        
+        <h1>Calendario de Eventos de Pastinaca 2025</h1>
+        <div class="subtitle">Prepárate!</div>
+
+        <div class="calendar">
+            <div class="month empty-month">
+                <h2>Enero</h2>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Febrero</h2>
+                <div class="event curso">
+                    <div class="event-name">Curso N1</div>
+                    <div class="event-date">22-23 de Febrero, 2025</div>
+                    <span class="event-type">Curso Nuevos Alumnos</span>
+                </div>
+				<div class="event pastilabs">
+                    <div class="event-name">Periodización</div>
+                    <div class="event-date">Febrero, 2025</div>
+                    <span class="event-type">PastiLabs</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Marzo</h2>
+                <div class="event simulacro">
+                    <div class="event-name">Prueba de Rendimiento</div>
+                    <div class="event-date">15-16 de Marzo, 2025</div>
+                    <span class="event-type">Simulacro</span>
+                </div>
+				<div class="event pastilabs">
+                    <div class="event-name">Taller de Luz</div>
+                    <div class="event-date">23 de Marzo, 2025</div>
+                    <span class="event-type">PastiLabs</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Abril</h2>
+				<div class="event curso">
+                    <div class="event-name">Curso N3</div>
+                    <div class="event-date">Marzo - Abril, 2025</div>
+                    <span class="event-type">Curso</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month empty-month">
+                <h2>Mayo</h2>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Junio</h2>
+                <div class="event juegos">
+                    <div class="event-name">PastiGames</div>
+                    <div class="event-date">7-8 de Junio, 2025</div>
+                    <span class="event-type">Juegos</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Julio</h2>
+                <div class="event competencia">
+                    <div class="event-name">Competencia Ceforma</div>
+                    <div class="event-date">25-27 de Julio, 2025</div>
+                    <span class="event-type">Competencia</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Agosto</h2>
+                <div class="event curso">
+                    <div class="event-name">Ciclo Entrenamientos 2025-2026</div>
+                    <div class="event-date">2-3 de Agosto, 2025</div>
+                    <span class="event-type">Nuevo Curso</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Septiembre</h2>
+                <div class="event training">
+                    <div class="event-name">Fiesta Mexicana</div>
+                    <div class="event-date">13-14 de Septiembre, 2025</div>
+                    <span class="event-type">Simulacro</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month empty-month">
+                <h2>Octubre</h2>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Noviembre</h2>
+                <div class="event competencia">
+                    <div class="event-name">Zanka</div>
+                    <div class="event-date">15-16 de Noviembre, 2025</div>
+                    <span class="event-type">Competencia</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="month">
+                <h2>Diciembre</h2>
+                <div class="event juegos">
+                    <div class="event-name">PastiGames</div>
+                    <div class="event-date">6-7 de Diciembre, 2025</div>
+                    <span class="event-type">Juegos</span>
+                </div>
+                <div class="event fiesta">
+                    <div class="event-name">PastiAwards</div>
+                    <div class="event-date">6 de Diciembre, 2025</div>
+                    <span class="event-type">Fiesta</span>
+                </div>
+                <div class="waves">
+                    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#ffffff" fill-opacity="0.2" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,128C960,96,1056,64,1152,74.7C1248,85,1344,139,1392,165.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Calendario 2025 • Pastinaca</p>
+        </div>
+    </div>
+</body>
+</html>
